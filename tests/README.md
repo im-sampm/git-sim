@@ -11,7 +11,7 @@ The following instructions will let you run tests as soon as you clone the repos
 $ git clone https://github.com/initialcommit-com/git-sim.git
 $ cd git-sim
 $ python3 -m venv .venv
-$ source venv/bin/activate
+$ source .venv/bin/activate
 (.venv)$ pip install -e .
 (.venv)$ pip install pytest
 (.venv)$ pytest -s
