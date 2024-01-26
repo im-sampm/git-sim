@@ -89,6 +89,7 @@ class Merge(GitSimBaseCommand):
                         color=self.fontColor,
                         stroke_width=self.arrow_stroke_width,
                         tip_shape=self.arrow_tip_shape,
+                        tip_length=settings.arrow_tip_length,
                     )
                     self.draw_arrow(True, arrow)
 

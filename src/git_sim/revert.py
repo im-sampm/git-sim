@@ -59,7 +59,7 @@ class Revert(GitSimBaseCommand):
     def build_commit_id_and_message(self, commit, i):
         hide_refs = False
         if commit == "dark":
-            commitId = m.Text("", font=self.font, font_size=20, color=self.fontColor)
+            commitId = m.Text("", font=self.font, font_size=settings.commit_id_font_size, color=self.fontColor)
             commitMessage = ""
         elif i == 2 and self.revert.hexsha not in [
             commit.hexsha for commit in self.get_default_commits()
@@ -75,7 +75,7 @@ class Revert(GitSimBaseCommand):
             commitId = m.Text(
                 self.revert.hexsha[:6],
                 font=self.font,
-                font_size=20,
+                font_size=settings.commit_id_font_size,
                 color=self.fontColor,
             )
             commitMessage = self.revert.message.split("\n")[0][:40].replace("\n", " ")
@@ -84,7 +84,7 @@ class Revert(GitSimBaseCommand):
             commitId = m.Text(
                 commit.hexsha[:6],
                 font=self.font,
-                font_size=20,
+                font_size=settings.commit_id_font_size,
                 color=self.fontColor,
             )
             commitMessage = commit.message.split("\n")[0][:40].replace("\n", " ")
@@ -93,7 +93,7 @@ class Revert(GitSimBaseCommand):
     def setup_and_draw_revert_commit(self):
         circle = m.Circle(
             stroke_color=m.RED,
-            stroke_width=self.commit_stroke_width,
+            stroke_width=settings.commit_stroke_width,
             fill_color=m.RED,
             fill_opacity=0.25,
         )
@@ -110,7 +110,7 @@ class Revert(GitSimBaseCommand):
             start,
             end,
             color=self.fontColor,
-            stroke_width=self.arrow_stroke_width,
+            stroke_width=settings.arrow_stroke_width,
             tip_shape=self.arrow_tip_shape,
             max_stroke_width_to_length_ratio=1000,
         )
@@ -118,7 +118,7 @@ class Revert(GitSimBaseCommand):
         arrow.set_length(length)
 
         commitId = m.Text(
-            "abcdef", font=self.font, font_size=20, color=self.fontColor
+            "abcdef", font=self.font, font_size=settings.commit_id_font_size, color=self.fontColor
         ).next_to(circle, m.UP)
         self.toFadeOut.add(commitId)
 

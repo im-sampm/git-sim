@@ -60,13 +60,13 @@ class Reset(GitSimBaseCommand):
     def build_commit_id_and_message(self, commit, i):
         hide_refs = False
         if commit == "dark":
-            commitId = m.Text("", font=self.font, font_size=20, color=self.fontColor)
+            commitId = m.Text("", font=self.font, font_size=settings.commit_id_font_size, color=self.fontColor)
             commitMessage = ""
         elif i == 3 and self.resetTo.hexsha not in [
             c.hexsha for c in self.get_default_commits()
         ]:
             commitId = m.Text(
-                "...", font=self.font, font_size=20, color=self.fontColor
+                "...", font=self.font, font_size=settings.commit_id_font_size, color=self.fontColor
             )
             commitMessage = "..."
             hide_refs = True
@@ -76,7 +76,7 @@ class Reset(GitSimBaseCommand):
             commitId = m.Text(
                 self.resetTo.hexsha[:6],
                 font=self.font,
-                font_size=20,
+                font_size=settings.commit_id_font_size,
                 color=self.fontColor,
             )
             commitMessage = self.resetTo.message.split("\n")[0][:40].replace("\n", " ")
@@ -86,7 +86,7 @@ class Reset(GitSimBaseCommand):
             commitId = m.Text(
                 commit.hexsha[:6],
                 font=self.font,
-                font_size=20,
+                font_size=settings.commit_id_font_size,
                 color=self.fontColor,
             )
             commitMessage = commit.message.split("\n")[0][:40].replace("\n", " ")

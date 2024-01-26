@@ -113,7 +113,7 @@ class Rebase(GitSimBaseCommand):
     ):
         circle = m.Circle(
             stroke_color=m.RED,
-            stroke_width=self.commit_stroke_width,
+            stroke_width=settings.commit_stroke_width,
             fill_color=m.RED,
             fill_opacity=0.25,
         )
@@ -131,9 +131,10 @@ class Rebase(GitSimBaseCommand):
             start,
             end,
             color=self.fontColor,
-            stroke_width=self.arrow_stroke_width,
+            stroke_width=settings.arrow_stroke_width,
             tip_shape=self.arrow_tip_shape,
             max_stroke_width_to_length_ratio=1000,
+            tip_length=settings.arrow_tip_length,
         )
         length = numpy.linalg.norm(start - end) - (1.5 if start[1] == end[1] else 3)
         arrow.set_length(length)
@@ -150,7 +151,7 @@ class Rebase(GitSimBaseCommand):
         commitId = m.Text(
             sha if commitMessage != "..." else "...",
             font=self.font,
-            font_size=20,
+            font_size=settings.commit_id_font_size,
             color=self.fontColor,
         ).next_to(circle, m.UP)
         self.toFadeOut.add(commitId)

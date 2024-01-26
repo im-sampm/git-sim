@@ -43,6 +43,26 @@ class Settings(BaseSettings):
     font: str = "Monospace"
     font_context: bool = False
 
+    commit_id_font_size: int = 20 
+    commit_stroke_width: float = 5
+    arrow_stroke_width: float = 2
+    arrow_tip_length: float = 0.35
+
+    commit_fill_color: str = "orange"
+
+    head_fill_color: str = "red"
+    head_stroke_color: str = "red"
+
+    branch_fill_color: str = "green"
+    branch_stroke_color: str = "green"
+
+    tag_fill_color: str = "yellow"
+    tag_stroke_color: str = "yellow"
+
+    fill_opacity: float = 0.25
+    ref_fill_opacity: float = 0.25
+
+
     class Config:
         env_prefix = "git_sim_"
 

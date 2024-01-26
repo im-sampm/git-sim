@@ -7,7 +7,6 @@ import time
 from pathlib import Path
 
 import typer
-import manim as m
 
 from fontTools.ttLib import TTFont
 
@@ -172,6 +171,52 @@ def main(
         settings.font,
         help="Font family used to display rendered text",
     ),
+
+    commit_id_font_size: int = typer.Option(
+        settings.commit_id_font_size,
+        help="",
+    ),
+    commit_stroke_width: float = typer.Option(
+        settings.commit_stroke_width,
+        help="",
+    ),
+    arrow_stroke_width: float = typer.Option(
+        settings.arrow_stroke_width,
+        help="",
+    ),
+    arrow_tip_length: float = typer.Option(
+        settings.arrow_tip_length,
+        help="",
+    ),
+
+    commit_fill_color: str = typer.Option(
+        settings.commit_fill_color,
+        help="",
+    ),
+    head_fill_color: str = typer.Option(
+        settings.head_fill_color,
+        help="",
+    ),
+    head_stroke_color: str = typer.Option(
+        settings.head_stroke_color,
+        help="",
+    ),
+    branch_fill_color: str = typer.Option(
+        settings.branch_fill_color,
+        help="",
+    ),
+    branch_stroke_color: str = typer.Option(
+        settings.branch_stroke_color,
+        help="",
+    ),
+    tag_fill_color: str = typer.Option(
+        settings.tag_fill_color,
+        help="",
+    ),
+    tag_stroke_color: str = typer.Option(
+        settings.tag_stroke_color,
+        help="",
+    ),
 ):
     import git
     from manim import WHITE, config
@@ -204,6 +249,30 @@ def main(
     settings.color_by = color_by
     settings.highlight_commit_messages = highlight_commit_messages
     settings.style = style
+
+    settings.commit_id_font_size = commit_id_font_size
+    if settings.style == StyleOptions.CLEAN:
+        settings.commit_stroke_width = commit_stroke_width
+        settings.arrow_stroke_width  = arrow_stroke_width
+    elif settings.style == StyleOptions.THICK:
+        settings.commit_stroke_width = commit_stroke_width * 6
+        settings.arrow_stroke_width = arrow_stroke_width * 2
+
+    settings.arrow_tip_length  = arrow_tip_length
+    settings.commit_fill_color   = commit_fill_color
+
+    settings.head_fill_color = head_fill_color
+    settings.head_stroke_color = head_stroke_color
+
+    settings.branch_fill_color = branch_fill_color
+    settings.branch_stroke_color = branch_stroke_color
+
+    settings.tag_fill_color = tag_fill_color
+    settings.tag_stroke_color = tag_stroke_color
+
+    if settings.transparent_bg:
+        settings.fill_opacity = 0.5
+        settings.ref_fill_opacity = 1.0
 
     # If font is a path, define the context that will be used when using Manim.
     if Path(font).exists():
